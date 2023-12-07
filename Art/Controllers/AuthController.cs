@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 
 namespace Art.Controllers
-{
+{// controller a [Authorize] versem onda private olacaq. Amma hansisa methoda AllowAnonymous yazsam onda gorunecek
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
@@ -53,7 +53,9 @@ namespace Art.Controllers
         {
             List<Claim> claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, artistReg.nAME)
+                new Claim(ClaimTypes.Name, artistReg.nAME),
+                new Claim(ClaimTypes.Role, "Admin" )
+
             };
             var Key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));
             var creds = new SigningCredentials(Key, SecurityAlgorithms.HmacSha512Signature);

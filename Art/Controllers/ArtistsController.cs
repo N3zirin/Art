@@ -25,7 +25,7 @@ namespace Art.Controllers
             _artistService = artistService;
         }
 
-        [HttpGet("[action]"), Authorize]
+        [HttpGet("[action]"), Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllArtist()
         {
             var data = await _artistService.GetAllArtists();
